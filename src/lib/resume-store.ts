@@ -1,146 +1,263 @@
-// Lightweight in-memory resume store (no persistence required for frontend demo)
+// Lightweight browser resume store. The shape mirrors resume-template.html.
 import { useEffect, useState } from "react";
 
 export type ResumeData = {
   header: {
     name: string;
-    title: string;
-    email: string;
     phone: string;
-    location: string;
+    email: string;
+    linkedin: string;
+    github: string;
     website: string;
-    summary: string;
+    codeProfile: string;
+    location: string;
   };
-  experience: Array<{
+  education: Array<{
     id: string;
-    company: string;
-    role: string;
+    institution: string;
+    location: string;
+    degree: string;
+    score: string;
     start: string;
     end: string;
+  }>;
+  experience: Array<{
+    id: string;
+    role: string;
+    organization: string;
     location: string;
+    start: string;
+    end: string;
     bullets: string;
   }>;
   projects: Array<{
     id: string;
     name: string;
-    stack: string;
-    link: string;
-    description: string;
-  }>;
-  education: Array<{
-    id: string;
-    school: string;
-    degree: string;
     start: string;
     end: string;
-    details: string;
+    github: string;
+    live: string;
+    bullets: string;
+    techStack: string;
+  }>;
+  achievements: Array<{
+    id: string;
+    text: string;
   }>;
   skills: {
     languages: string;
-    frameworks: string;
+    frontend: string;
+    backend: string;
+    databases: string;
     tools: string;
-    other: string;
   };
-  achievements: Array<{
-    id: string;
-    title: string;
-    description: string;
-    date: string;
-  }>;
 };
 
+export const uid = () => Math.random().toString(36).slice(2, 9);
+
 export const emptyResume: ResumeData = {
-  header: { name: "", title: "", email: "", phone: "", location: "", website: "", summary: "" },
+  header: {
+    name: "",
+    phone: "",
+    email: "",
+    linkedin: "",
+    github: "",
+    website: "",
+    codeProfile: "",
+    location: "",
+  },
+  education: [],
   experience: [],
   projects: [],
-  education: [],
-  skills: { languages: "", frameworks: "", tools: "", other: "" },
   achievements: [],
+  skills: {
+    languages: "",
+    frontend: "",
+    backend: "",
+    databases: "",
+    tools: "",
+  },
 };
 
 export const sampleResume: ResumeData = {
   header: {
-    name: "Alex Rivera",
-    title: "Full-Stack Engineer",
-    email: "alex@rivera.dev",
-    phone: "+1 (415) 555-0188",
-    location: "San Francisco, CA",
-    website: "rivera.dev",
-    summary:
-      "Engineer with 5+ years building performant web products. Passionate about DX, type-safe systems, and shipping fast.",
+    name: "John Placeholder",
+    phone: "+00-0000000000",
+    email: "email@example.com",
+    linkedin: "https://linkedin.com/in/example",
+    github: "https://github.com/example",
+    website: "https://example.com",
+    codeProfile: "https://leetcode.com/example",
+    location: "City, Country",
   },
+  education: [
+    {
+      id: "ed1",
+      institution: "Example Institute of Technology",
+      location: "City, Country",
+      degree: "Bachelor of Technology in Sample Field",
+      score: "9.0/10.0",
+      start: "2022",
+      end: "2026",
+    },
+  ],
   experience: [
     {
       id: "e1",
-      company: "Northwind Labs",
-      role: "Senior Software Engineer",
-      start: "2022",
-      end: "Present",
-      location: "Remote",
+      role: "Software Intern",
+      organization: "Example Organization",
+      location: "City",
+      start: "Jan 2025",
+      end: "Mar 2025",
       bullets:
-        "• Led migration to a TanStack Start monorepo, cutting cold start by 48%.\n• Mentored 4 engineers and shipped the new billing surface used by 30k orgs.",
-    },
-    {
-      id: "e2",
-      company: "Loop & Co",
-      role: "Software Engineer",
-      start: "2020",
-      end: "2022",
-      location: "NYC",
-      bullets:
-        "• Built realtime dashboards in React + WebSockets serving 12M events/day.\n• Owned the design system migration to Tailwind + tokens.",
+        "Worked on placeholder frontend and backend features.\nDeveloped sample APIs for demonstration purposes.\nIntegrated mock services into test workflows.\nImproved efficiency of example systems.",
     },
   ],
   projects: [
     {
       id: "p1",
-      name: "Inkwell",
-      stack: "TypeScript, Postgres, tRPC",
-      link: "github.com/alex/inkwell",
-      description:
-        "Open-source CMS for indie writers. 2.4k stars, used by 600+ blogs.",
+      name: "Sample Project One",
+      start: "2025",
+      end: "Present",
+      github: "https://github.com/example/sample-one",
+      live: "https://sample-one.example.com",
+      bullets:
+        "Built a demo application with placeholder functionality.\nImplemented mock workflows and event handling.\nDesigned scalable example architecture.",
+      techStack: "ExampleJS, DemoFramework, SampleDB",
+    },
+    {
+      id: "p2",
+      name: "Sample Project Two",
+      start: "2024",
+      end: "2025",
+      github: "https://github.com/example/sample-two",
+      live: "https://sample-two.example.com",
+      bullets:
+        "Created placeholder dashboards and UI components.\nBuilt backend logic using mock datasets.\nOptimized sample workflows for performance.",
+      techStack: "PlaceholderTech, UIFramework, MockAPI",
     },
   ],
-  education: [
-    {
-      id: "ed1",
-      school: "UC Berkeley",
-      degree: "B.S. Computer Science",
-      start: "2016",
-      end: "2020",
-      details: "Honors. Coursework: Distributed Systems, HCI, Compilers.",
-    },
+  achievements: [
+    { id: "a1", text: "Achieved a high rank in a sample coding contest." },
+    { id: "a2", text: "Completed multiple example certifications." },
+    { id: "a3", text: "Recognized for problem-solving in mock environments." },
+    { id: "a4", text: "Participated in simulated hackathons." },
   ],
   skills: {
-    languages: "TypeScript, Python, Go, SQL",
-    frameworks: "React, TanStack, Next.js, FastAPI",
-    tools: "Postgres, Redis, Docker, AWS, Vercel",
-    other: "GraphQL, WebSockets, OpenTelemetry",
+    languages: "ExampleLang, DemoScript, Sample++",
+    frontend: "HTML, CSS, ExampleJS",
+    backend: "DemoFramework, SampleServer",
+    databases: "MockDB, ExampleSQL",
+    tools: "Git, Docker, PlaceholderTool",
   },
-  achievements: [
-    {
-      id: "a1",
-      title: "Speaker, ReactConf",
-      description: "Talk on edge-first React rendering — 40k views.",
-      date: "2024",
-    },
-  ],
 };
 
 const KEY = "resume:data";
+
+const stringValue = (value: unknown) => (typeof value === "string" ? value : "");
+
+const normalizeLines = (value: unknown) =>
+  Array.isArray(value)
+    ? value
+        .map((item) => stringValue(item))
+        .filter(Boolean)
+        .join("\n")
+    : stringValue(value);
+
+export function normalizeResumeData(value: unknown): ResumeData {
+  if (!value || typeof value !== "object") return emptyResume;
+
+  const raw = value as Record<string, unknown>;
+  const header = (raw.header ?? {}) as Record<string, unknown>;
+  const skills = (raw.skills ?? {}) as Record<string, unknown>;
+
+  return {
+    header: {
+      name: stringValue(header.name),
+      phone: stringValue(header.phone),
+      email: stringValue(header.email),
+      linkedin: stringValue(header.linkedin),
+      github: stringValue(header.github),
+      website: stringValue(header.website),
+      codeProfile: stringValue(header.codeProfile),
+      location: stringValue(header.location),
+    },
+    education: Array.isArray(raw.education)
+      ? raw.education.map((item) => {
+          const entry = (item ?? {}) as Record<string, unknown>;
+          return {
+            id: stringValue(entry.id) || uid(),
+            institution: stringValue(entry.institution ?? entry.school),
+            location: stringValue(entry.location),
+            degree: stringValue(entry.degree),
+            score: stringValue(entry.score),
+            start: stringValue(entry.start),
+            end: stringValue(entry.end),
+          };
+        })
+      : [],
+    experience: Array.isArray(raw.experience)
+      ? raw.experience.map((item) => {
+          const entry = (item ?? {}) as Record<string, unknown>;
+          return {
+            id: stringValue(entry.id) || uid(),
+            role: stringValue(entry.role),
+            organization: stringValue(entry.organization ?? entry.company),
+            location: stringValue(entry.location),
+            start: stringValue(entry.start),
+            end: stringValue(entry.end),
+            bullets: normalizeLines(entry.bullets),
+          };
+        })
+      : [],
+    projects: Array.isArray(raw.projects)
+      ? raw.projects.map((item) => {
+          const entry = (item ?? {}) as Record<string, unknown>;
+          return {
+            id: stringValue(entry.id) || uid(),
+            name: stringValue(entry.name),
+            start: stringValue(entry.start),
+            end: stringValue(entry.end),
+            github: stringValue(entry.github),
+            live: stringValue(entry.live ?? entry.link),
+            bullets: normalizeLines(entry.bullets ?? entry.description),
+            techStack: stringValue(entry.techStack ?? entry.stack),
+          };
+        })
+      : [],
+    achievements: Array.isArray(raw.achievements)
+      ? raw.achievements.map((item) => {
+          const entry = (item ?? {}) as Record<string, unknown>;
+          return {
+            id: stringValue(entry.id) || uid(),
+            text: stringValue(entry.text ?? entry.title ?? entry.description),
+          };
+        })
+      : [],
+    skills: {
+      languages: stringValue(skills.languages),
+      frontend: stringValue(skills.frontend ?? skills.frameworks),
+      backend: stringValue(skills.backend),
+      databases: stringValue(skills.databases),
+      tools: stringValue(skills.tools ?? skills.other),
+    },
+  };
+}
 
 export function loadResume(): ResumeData {
   if (typeof window === "undefined") return emptyResume;
   try {
     const raw = localStorage.getItem(KEY);
-    if (raw) return JSON.parse(raw) as ResumeData;
-  } catch {}
+    if (raw) return normalizeResumeData(JSON.parse(raw));
+  } catch {
+    return emptyResume;
+  }
   return emptyResume;
 }
 
 export function saveResume(data: ResumeData) {
   if (typeof window === "undefined") return;
-  localStorage.setItem(KEY, JSON.stringify(data));
+  localStorage.setItem(KEY, JSON.stringify(normalizeResumeData(data)));
 }
 
 export function useResume() {
@@ -158,5 +275,3 @@ export function useResume() {
 
   return [data, setData] as const;
 }
-
-export const uid = () => Math.random().toString(36).slice(2, 9);

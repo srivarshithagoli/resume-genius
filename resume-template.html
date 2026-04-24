@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Resume</title>
+
+    <style>
+      body {
+        margin: 0;
+        background: #e5e5e5;
+        font-family: Arial, Helvetica, sans-serif;
+        --page-padding-y: 13mm;
+        --page-padding-x: 14mm;
+        --resume-font-size: 10pt;
+        --resume-line-height: 1.24;
+        --name-font-size: 18pt;
+        --contact-font-size: 8.4pt;
+        --section-gap: 8px;
+        --section-title-size: 10.6pt;
+        --entry-gap: 5px;
+        --list-left: 16px;
+      }
+
+      .page {
+        width: 210mm;
+        height: 297mm;
+        margin: auto;
+        background: white;
+        padding: var(--page-padding-y) var(--page-padding-x);
+        box-sizing: border-box;
+        font-size: var(--resume-font-size);
+        line-height: var(--resume-line-height);
+        color: #000;
+        overflow-wrap: break-word;
+      }
+
+      .page.compact {
+        --page-padding-y: 13mm;
+        --page-padding-x: 14mm;
+        --resume-font-size: 10.45pt;
+        --resume-line-height: 1.31;
+        --name-font-size: 18.8pt;
+        --contact-font-size: 8.75pt;
+        --section-gap: 10px;
+        --section-title-size: 11pt;
+        --entry-gap: 7px;
+        --list-left: 18px;
+      }
+
+      .page.ultra-compact {
+        --page-padding-y: 9mm;
+        --page-padding-x: 11mm;
+        --resume-font-size: 8.8pt;
+        --resume-line-height: 1.17;
+        --name-font-size: 15.5pt;
+        --contact-font-size: 7.5pt;
+        --section-gap: 5px;
+        --section-title-size: 9.5pt;
+        --entry-gap: 3px;
+        --list-left: 13px;
+      }
+
+      h1 {
+        font-size: var(--name-font-size);
+        line-height: 1.05;
+        margin: 0 0 3px 0;
+        font-weight: bold;
+      }
+
+      .contact {
+        font-size: var(--contact-font-size);
+        line-height: 1.18;
+        margin-bottom: 4px;
+      }
+
+      a {
+        color: #0000ee;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .section {
+        margin-top: var(--section-gap);
+      }
+
+      .section-title {
+        font-weight: bold;
+        font-size: var(--section-title-size);
+        border-bottom: 1px solid black;
+        margin-bottom: 3px;
+        padding-bottom: 1px;
+      }
+
+      .entry {
+        margin-bottom: var(--entry-gap);
+      }
+
+      .row {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .row > :first-child {
+        min-width: 0;
+      }
+
+      .row > :last-child {
+        flex: 0 0 auto;
+        text-align: right;
+      }
+
+      .italic {
+        font-style: italic;
+        font-size: 0.92em;
+      }
+
+      ul {
+        margin: 2px 0 3px var(--list-left);
+        padding: 0;
+      }
+
+      li {
+        margin-bottom: 1.5px;
+      }
+
+      strong {
+        font-weight: bold;
+      }
+
+      .links {
+        font-size: 0.9em;
+        font-weight: normal;
+        white-space: nowrap;
+      }
+
+      .tech-stack {
+        font-size: 0.95em;
+      }
+
+      .skills-line {
+        margin-bottom: 1px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page">
+      <h1>John Placeholder</h1>
+
+      <div class="contact">
+        +00-0000000000 |
+        <a href="#">email@example.com</a> | <a href="#">LinkedIn</a> | <a href="#">GitHub</a> |
+        <a href="#">Website</a> | <a href="#">CodeProfile</a> | City, Country
+      </div>
+
+      <!-- Education -->
+      <div class="section">
+        <div class="section-title">Education</div>
+
+        <div class="entry">
+          <div class="row">
+            <strong>Example Institute of Technology</strong>
+            <span>City, Country</span>
+          </div>
+          <div class="row italic">
+            <span>Bachelor of Technology in Sample Field | CGPA: 9.0/10.0</span>
+            <span>2022 – 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience -->
+      <div class="section">
+        <div class="section-title">Experience</div>
+
+        <div class="entry">
+          <div class="row">
+            <strong>Software Intern</strong>
+            <span>Jan 2025 – Mar 2025</span>
+          </div>
+          <div class="italic">Example Organization — City</div>
+          <ul>
+            <li>Worked on placeholder frontend and backend features.</li>
+            <li>Developed sample APIs for demonstration purposes.</li>
+            <li>Integrated mock services into test workflows.</li>
+            <li>Improved efficiency of example systems.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Projects -->
+      <div class="section">
+        <div class="section-title">Projects</div>
+
+        <div class="entry">
+          <div class="row">
+            <strong>Sample Project One</strong>
+            <span>2025 – Present</span>
+          </div>
+          <div><a href="#">GitHub</a> | <a href="#">Live</a></div>
+          <ul>
+            <li>Built a demo application with placeholder functionality.</li>
+            <li>Implemented mock workflows and event handling.</li>
+            <li>Designed scalable example architecture.</li>
+          </ul>
+          <div><strong>Tech Stack:</strong> ExampleJS, DemoFramework, SampleDB</div>
+        </div>
+
+        <div class="entry">
+          <div class="row">
+            <strong>Sample Project Two</strong>
+            <span>2024 – 2025</span>
+          </div>
+          <div><a href="#">GitHub</a> | <a href="#">Live</a></div>
+          <ul>
+            <li>Created placeholder dashboards and UI components.</li>
+            <li>Built backend logic using mock datasets.</li>
+            <li>Optimized sample workflows for performance.</li>
+          </ul>
+          <div><strong>Tech Stack:</strong> PlaceholderTech, UIFramework, MockAPI</div>
+        </div>
+      </div>
+
+      <!-- Achievements -->
+      <div class="section">
+        <div class="section-title">Achievements</div>
+        <ul>
+          <li>Achieved a high rank in a sample coding contest.</li>
+          <li>Completed multiple example certifications.</li>
+          <li>Recognized for problem-solving in mock environments.</li>
+          <li>Participated in simulated hackathons.</li>
+        </ul>
+      </div>
+
+      <!-- Skills -->
+      <div class="section">
+        <div class="section-title">Technical Skills</div>
+        <div><strong>Languages:</strong> ExampleLang, DemoScript, Sample++</div>
+        <div><strong>Frontend:</strong> HTML, CSS, ExampleJS</div>
+        <div><strong>Backend:</strong> DemoFramework, SampleServer</div>
+        <div><strong>Databases:</strong> MockDB, ExampleSQL</div>
+        <div><strong>Tools:</strong> Git, Docker, PlaceholderTool</div>
+      </div>
+    </div>
+  </body>
+</html>
